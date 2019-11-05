@@ -19,6 +19,7 @@ public class Sample {
         // TODO code application logic here
         
         System.out.println("Hello world");
+        System.out.println("I from RSD");
     }
     
 }
