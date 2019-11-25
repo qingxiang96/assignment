@@ -1,0 +1,4 @@
+language: java
+sudo: required
+before_install:
+  echo $(ant -version)
