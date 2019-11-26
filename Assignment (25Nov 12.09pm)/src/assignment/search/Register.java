@@ -48,6 +48,11 @@ public class Register extends javax.swing.JFrame {
         jlblPassword.setText("password :");
 
         jtxtUserName.setToolTipText("");
+        jtxtUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtUserNameActionPerformed(evt);
+            }
+        });
 
         jbtnRegister.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbtnRegister.setText("Register");
@@ -66,6 +71,12 @@ public class Register extends javax.swing.JFrame {
 
         jlblPassword1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlblPassword1.setText("re-enter password :");
+
+        jtxtPassword1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtPassword1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,19 +144,54 @@ public class Register extends javax.swing.JFrame {
         String repassword = jtxtPassword1.getText();
         String position = "customer";
         
+        
         //UserDatabase[] customer = new UserDatabase(position, name, username, password);
         
-         java.awt.EventQueue.invokeLater(new Runnable() {
+        
+         
+         if(jtxtPassword.getText().equals("") && jtxtUserName.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);
+            
+        }
+        
+        else if(jtxtPassword.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);
+            
+        }
+        else if(jtxtUserName.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);
+            
+        }
+        if(!password.equals(repassword)){
+            JOptionPane.showMessageDialog(null, "The passwords do not match, please try again","Error",2);
+        }
+        if(jtxtPassword.getText() != "" && jtxtUserName.getText()!=""){
+            java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login(position,name,username,password).setVisible(true);
             }
         });
+            this.setVisible(false);
+        }
          
-         this.setVisible(false);
+         
+         
+         
+         
+        
 
+         
 
 
     }//GEN-LAST:event_jbtnRegisterActionPerformed
+
+    private void jtxtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtUserNameActionPerformed
+
+    private void jtxtPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtPassword1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtPassword1ActionPerformed
 
     /**
      * @param args the command line arguments
