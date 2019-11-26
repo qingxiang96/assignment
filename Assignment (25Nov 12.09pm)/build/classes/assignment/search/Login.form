@@ -111,6 +111,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtUserNameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtnLogin">
       <Properties>
@@ -130,6 +133,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jtxtPassword">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtPasswordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtnRegister">
       <Properties>

@@ -170,15 +170,21 @@ public class Login extends javax.swing.JFrame {
         
         username = jtxtUserName.getText();
         password = jtxtPassword.getText();
+        jlblMessage.setText("Please enter your username and password.");//RESET ERROR MESSAGE
         
         //Check customer login
-        for(int i=0 ; i<CustomerCount ; i++){
+        for(int i=0 ; i<CustomerCount ; i++){            
             if(username.equals(customer[i].getName())){
                 if(password.equals(customer[i].getPassword())){
                     jlblMessage.setText("Login Success");
                     UserCheck = true;
                     //new AddProductUI().setVisible(true);
                    // this.setVisible(false);
+                }else{
+                    UserCheck = false;
+                    jtxtPassword.setText("");
+                    jlblMessage.setText("Incorrect password!");
+                    break;
                 }
                
             }
@@ -189,19 +195,32 @@ public class Login extends javax.swing.JFrame {
         //int j = 0;
         //Check staff login
        // while(UserCheck == false){
-        for(int i=0 ; i<StaffCount ; i++){
-            if(username.equals(staff[i].getName())){
+        for(int i=0 ; i<=StaffCount ; i++){
+            if(jtxtPassword.getText().equals("") && jtxtUserName.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);break;
+            }else if(jtxtPassword.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);break;
+            }else if(jtxtUserName.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);break;
+            }else if(username.equals(staff[i].getName())){
                 if(password.equals(staff[i].getPassword())){
                     jlblMessage.setText("Login Success");
                     UserCheck = true;
                     //new AddProductUI().setVisible(true);
                     //this.setVisible(false);
+                }else{
+                    UserCheck = false;
+                    jtxtPassword.setText("");
+                    jlblMessage.setText("Incorrect password!");
+                    break;
                 }
                 //else {
                    // JOptionPane.showMessageDialog(this, "Incorrect username and password. "
                      //       + "\nPlease enter your username and passsword again.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     
                 //}
+            }else{
+                jlblMessage.setText("Incorrect UserName or password");
             }
         }
         //}
@@ -218,32 +237,15 @@ public class Login extends javax.swing.JFrame {
    
         }*/
         //UserCheck = false;
-        if(UserCheck == false){
-             jlblMessage.setText("Incorrect UserName or password");
-        }
-        else if (UserCheck == true){
+//        if(UserCheck == false){
+//             jlblMessage.setText("Incorrect UserName or password");
+//        }
+        if (UserCheck == true){
             jlblMessage.setText("Login Success");
             new AddProductUI().setVisible(true);
             this.setVisible(false);
             
         }
-        
-        
-        if(jtxtPassword.getText().equals("") && jtxtUserName.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);
-            
-        }
-        
-        else if(jtxtPassword.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);
-            
-        }
-        else if(jtxtUserName.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);
-            
-        }
-        
-        
         
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
