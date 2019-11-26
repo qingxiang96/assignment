@@ -69,6 +69,11 @@ public class Login extends javax.swing.JFrame {
         jlblPassword.setText("password :");
 
         jtxtUserName.setToolTipText("");
+        jtxtUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtUserNameActionPerformed(evt);
+            }
+        });
 
         jbtnLogin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jbtnLogin.setText("Login");
@@ -80,6 +85,12 @@ public class Login extends javax.swing.JFrame {
 
         jlblMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblMessage.setText("Please enter your username and password.");
+
+        jtxtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtPasswordActionPerformed(evt);
+            }
+        });
 
         jbtnRegister.setText("Register");
         jbtnRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +226,25 @@ public class Login extends javax.swing.JFrame {
             new AddProductUI().setVisible(true);
             this.setVisible(false);
             
-        } 
+        }
+        
+        
+        if(jtxtPassword.getText().equals("") && jtxtUserName.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);
+            
+        }
+        
+        else if(jtxtPassword.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);
+            
+        }
+        else if(jtxtUserName.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);
+            
+        }
+        
+        
+        
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
@@ -229,6 +258,14 @@ public class Login extends javax.swing.JFrame {
         
         this.setVisible(false);
     }//GEN-LAST:event_jbtnRegisterActionPerformed
+
+    private void jtxtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtPasswordActionPerformed
+
+    private void jtxtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtUserNameActionPerformed
 
     /**
      * @param args the command line arguments
