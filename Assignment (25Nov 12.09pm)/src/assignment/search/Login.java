@@ -5,6 +5,8 @@
  */
 package assignment.search;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,8 +57,14 @@ public class Login extends javax.swing.JFrame {
         jlblMessage = new javax.swing.JLabel();
         jtxtPassword = new javax.swing.JPasswordField();
         jbtnRegister = new javax.swing.JButton();
+        jlblCL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jlblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jlblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -99,6 +107,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jlblCL.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jlblCL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblCL.setText("changePLS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,7 +135,8 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jbtnRegister)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbtnLogin)
-                        .addGap(107, 107, 107)))
+                        .addGap(73, 73, 73)
+                        .addComponent(jlblCL)))
                 .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
@@ -144,7 +157,8 @@ public class Login extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnLogin)
-                    .addComponent(jbtnRegister))
+                    .addComponent(jbtnRegister)
+                    .addComponent(jlblCL))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -269,6 +283,16 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtUserNameActionPerformed
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+//###################TEST extra accpetanceTest: CAPLOCK OnOFf Indicator#####################
+        if(Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK)){
+            jlblCL.setText("onon on");
+        }else{
+            jlblCL.setText("offof");
+        }
+//###################TEST extra accpetanceTest: CAPLOCK OnOFf Indicator#####################
+    }//GEN-LAST:event_formKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -309,6 +333,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnLogin;
     private javax.swing.JButton jbtnRegister;
+    private javax.swing.JLabel jlblCL;
     private javax.swing.JLabel jlblMessage;
     private javax.swing.JLabel jlblPassword;
     private javax.swing.JLabel jlblTitle;
