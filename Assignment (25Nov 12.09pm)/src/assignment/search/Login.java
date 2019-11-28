@@ -291,7 +291,7 @@ public class Login extends javax.swing.JFrame {
             jlblMessage.setText("Login Success");
             new AddProductUI().setVisible(true);
             this.setVisible(false);
-            
+//            ###   TRAVIS CI   ###
         }
         
     }//GEN-LAST:event_jbtnLoginActionPerformed
