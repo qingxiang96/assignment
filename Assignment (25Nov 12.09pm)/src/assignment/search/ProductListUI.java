@@ -171,6 +171,12 @@ public class ProductListUI extends javax.swing.JFrame {
     });
         
     }
+    
+    public void custBtnDisable(){
+        jbtnAdd.setVisible(false);
+        jbtnDelete.setVisible(false);
+        jbtnUpdate.setVisible(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
