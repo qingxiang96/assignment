@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 /**
@@ -43,12 +44,13 @@ public class ProductListUI extends javax.swing.JFrame {
          initComponents();
         
         product1[0] = new ProductList(name, category, description, price);
-        addProduct(product1[0].getName());
+        addProduct(product1[0].getName(),product1[0].getCategory(),product1[0].getDescription());
     }
 
-    private void addProduct(String name){
+    private void addProduct(String name,String category, String description){
         jListProduct.setModel(listModel);
-        listModel.addElement(name);
+        //listModel.addElement("Name\t\tCategory\tDescription");
+        listModel.addElement(name + "\t\t" + category + "\t\t" + description);
     }
     
      public ProductListUI(boolean status) {
@@ -155,8 +157,17 @@ public class ProductListUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+        public void custBtnDisable(){
+        jbtnAdd.setVisible(false);
+        jbtnDelete.setVisible(false);
+        jbtnUpdate.setVisible(false);
+        jbtnGenerate.setVisible(false);
+    }
+    
+    
     private void jbtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddActionPerformed
         // TODO add your handling code here:
         //UserInterface.setVisible(true);
@@ -187,7 +198,12 @@ public class ProductListUI extends javax.swing.JFrame {
 
     private void jbtnGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGenerateActionPerformed
         // TODO add your handling code here:
-        String barcode;
+            if(product1[0] == null){
+                JOptionPane.showMessageDialog(null, "No item selected to generate barcode!","Error",2);
+              
+            }
+            else{
+                String barcode;
         
         
         barcode = "PA010" + dice.nextInt(6);
@@ -198,6 +214,8 @@ public class ProductListUI extends javax.swing.JFrame {
             }
         });
         this.setVisible(false);
+            }
+        
         
     }//GEN-LAST:event_jbtnGenerateActionPerformed
 

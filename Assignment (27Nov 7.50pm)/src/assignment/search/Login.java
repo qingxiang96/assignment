@@ -5,8 +5,9 @@
  */
 package assignment.search;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author OEM
@@ -21,6 +22,8 @@ public class Login extends javax.swing.JFrame {
     private int StaffCount;
     UserDatabase[] staff = new UserDatabase[5];
     UserDatabase[] customer = new UserDatabase[5];
+    int loginCustCount=3;
+    int loginStaffCount=3;
     
     /**
      * Creates new form Login
@@ -55,6 +58,7 @@ public class Login extends javax.swing.JFrame {
         jlblMessage = new javax.swing.JLabel();
         jtxtPassword = new javax.swing.JPasswordField();
         jbtnRegister = new javax.swing.JButton();
+        jlblCL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,9 +92,22 @@ public class Login extends javax.swing.JFrame {
         jlblMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblMessage.setText("Please enter your username and password.");
 
+        jtxtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxtPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtxtPasswordFocusLost(evt);
+            }
+        });
         jtxtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxtPasswordActionPerformed(evt);
+            }
+        });
+        jtxtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtPasswordKeyPressed(evt);
             }
         });
 
@@ -101,26 +118,18 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jlblCL.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jlblCL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jlblCL.setText("          ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jbtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblUserName)
-                            .addComponent(jlblPassword))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtxtUserName)
-                            .addComponent(jtxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(57, 57, 57)
+                .addComponent(jbtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                 .addGap(61, 61, 61))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
@@ -130,6 +139,20 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnLogin)
                 .addGap(173, 173, 173))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlblUserName)
+                        .addGap(34, 34, 34)
+                        .addComponent(jtxtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlblPassword)
+                        .addGap(42, 42, 42)
+                        .addComponent(jtxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jlblCL, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +167,9 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jtxtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlblPassword)
                             .addComponent(jtxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblPassword)))
+                            .addComponent(jlblCL)))
                     .addComponent(jlblUserName))
                 .addGap(27, 27, 27)
                 .addComponent(jbtnLogin)
@@ -178,92 +202,73 @@ public class Login extends javax.swing.JFrame {
         password = jtxtPassword.getText();
         jlblMessage.setText("Please enter your username and password.");//RESET ERROR MESSAGE
         
-        //Check customer login
-        for(int i=0 ; i<CustomerCount ; i++){     
+         for(int i=0 ; i<CustomerCount ; i++){
             if(jtxtPassword.getText().equals("") && jtxtUserName.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);
-                break;
-            }
-            else if(jtxtPassword.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);
-                break;
-            }
-            else if(jtxtUserName.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);
-                break;
-            }
-            else if(username.equals(customer[i].getName())){
+                JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);return;
+            }else if(jtxtPassword.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);return;
+            }else if(jtxtUserName.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);return;
+            }else if(username.equals(customer[i].getName())){
                 if(password.equals(customer[i].getPassword())){
                     jlblMessage.setText("Login Success");
                     UserCheck = true;
-                    break;
                     //new AddProductUI().setVisible(true);
                    // this.setVisible(false);
                 }else{
                     UserCheck = false;
-                    //jtxtPassword.setText("");
-                    //System.out.println("1");
-                    jlblMessage.setText("Incorrect password!");
-                    //System.out.println("2");
-                    break;
-                }
-               
-            }  
-            else{
-                jlblMessage.setText("Incorrect UserName or password");
-            }
-            
-            
-                    
-        
-        }
-        
-        if (UserCheck == true){
-                boolean status = false;
-                System.out.println(status);
-            jlblMessage.setText("Login Success");
-            new ProductListUI(status).setVisible(true);
-            this.setVisible(false);
-        }
-
-        //int j = 0;
-        //Check staff login
-       // while(UserCheck == false){
-        for(int i=0 ; i<=StaffCount ; i++){
-            if(jtxtPassword.getText().equals("") && jtxtUserName.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);break;
-            }else if(jtxtPassword.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);break;
-            }else if(jtxtUserName.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);break;
-            }else if(username.equals(staff[i].getName())){
-                if(password.equals(staff[i].getPassword())){
-                    jlblMessage.setText("Login Success");
-                    UserCheck = true;
-                    //new AddProductUI().setVisible(true);
-                    //this.setVisible(false);
-                }else{
-                    UserCheck = false;
                     jtxtPassword.setText("");
                     jlblMessage.setText("Incorrect password!");
-                    break;
+                    loginCustCount--;
+                    if(loginCustCount<=0){JOptionPane.showMessageDialog(null, "Login attempts failed more than 3 times!","Warning",2);}
+                    return;
                 }
+               
+            }
+             
+                
+        }
+        if (UserCheck == true){
+            jlblMessage.setText("Login Success");
+            ProductListUI ProductListUI = new ProductListUI();
+            ProductListUI.setVisible(true);
+            ProductListUI.custBtnDisable();
+            this.setVisible(false);            
+            return;
+        }
+        
+        //int j = 0;
+        //Check staff login
+       // while(UserCheck == false){       
+       for(int i=0 ; i<=StaffCount ; i++){
+           if(jtxtPassword.getText().equals("") && jtxtUserName.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "Username and password cannot be empty","Error",2);break;
+           }else if(jtxtPassword.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "password cannot be empty","Error",2);break;
+           }else if(jtxtUserName.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "Username cannot be empty","Error",2);break;
+           }else if(username.equals(staff[i].getName())){
+               if(password.equals(staff[i].getPassword())){
+                   jlblMessage.setText("Login Success");
+                   UserCheck = true;
+                    //new AddProductUI().setVisible(true);
+                    //this.setVisible(false);
+               }else{
+                   UserCheck = false;
+                   jtxtPassword.setText("");
+                   jlblMessage.setText("Incorrect password!");loginStaffCount--;
+                   if(loginStaffCount<=0){JOptionPane.showMessageDialog(null, "Login attempts failed more than 3 times!","Warning",2);}
+                   break;
+               }
                 //else {
                    // JOptionPane.showMessageDialog(this, "Incorrect username and password. "
                      //       + "\nPlease enter your username and passsword again.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     
                 //}
-            }else{
-                jlblMessage.setText("Incorrect UserName or password");
-            }
-            
-            if (UserCheck == true){
-            jlblMessage.setText("Login Success");
-            new ProductListUI().setVisible(true);
-            this.setVisible(false);
-            
-        }
-        }
+           }else{
+               jlblMessage.setText("Incorrect UserName or password");               
+           }
+       }       
         //}
         
         /*for(int i=0 ; i<UserCount ; i++){
@@ -281,12 +286,12 @@ public class Login extends javax.swing.JFrame {
 //        if(UserCheck == false){
 //             jlblMessage.setText("Incorrect UserName or password");
 //        }
-        /*if (UserCheck == true){
+        if (UserCheck == true){
             jlblMessage.setText("Login Success");
             new AddProductUI().setVisible(true);
             this.setVisible(false);
-            
-        }*/
+//            ###   TRAVIS CI   ###
+        }
         
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
@@ -310,6 +315,35 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtUserNameActionPerformed
 
+    private void jtxtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPasswordKeyPressed
+        // TODO add your handling code here:
+           if(Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK)){
+            jlblCL.setText("CAPSLOCK ON !");
+        }else{
+            jlblCL.setText("");
+        }
+    }//GEN-LAST:event_jtxtPasswordKeyPressed
+
+    private void jtxtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxtPasswordFocusGained
+        // TODO add your handling code here:
+        if (Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK)) {
+            jlblCL.setText("CAPSLOCK ON !");
+        } else {
+            jlblCL.setText("");
+        }
+    }//GEN-LAST:event_jtxtPasswordFocusGained
+
+    private void jtxtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxtPasswordFocusLost
+        // TODO add your handling code here:
+        //#####   remove CAPLOCK OnOFf Indicator when lostFocus     ##############
+        jlblCL.setText("   ");        
+//#####   remove CAPLOCK OnOFf Indicator when lostFocus     ##############
+    }//GEN-LAST:event_jtxtPasswordFocusLost
+
+    
+                                                                       
+
+    
     /**
      * @param args the command line arguments
      */
@@ -350,6 +384,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnLogin;
     private javax.swing.JButton jbtnRegister;
+    private javax.swing.JLabel jlblCL;
     private javax.swing.JLabel jlblMessage;
     private javax.swing.JLabel jlblPassword;
     private javax.swing.JLabel jlblTitle;

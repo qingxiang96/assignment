@@ -259,6 +259,7 @@ public class AddProductUI extends javax.swing.JFrame {
 
     private void jbtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveActionPerformed
         // TODO add your handling code here:
+        String barcode = jtxtBarcode.getText();
         String name = jtxtName.getText();
         String category = jcmbCategory.getSelectedItem().toString();
         String description = jtxtDescription.getText();
@@ -267,14 +268,23 @@ public class AddProductUI extends javax.swing.JFrame {
         new ProductListUI(name,category,description,price).setVisible(true);
         this.setVisible(false);
 
-        jtxtBarcode.setText("");
+        
         jtxtName.setText("");
         jtxtDescription.setText("");
         jtxtPrice.setText("");
         jlblImgIcon.setIcon(new ImageIcon());
         jtxtName.grabFocus();
         
+        if(jtxtBarcode.getText().equals("")){
+                //JOptionPane.showMessageDialog(null, "empty","Error",2);
+              
+            }
+        else{
+            JOptionPane.showMessageDialog(null, "Success save product barcode","Information",2);
+                    
+        }
         
+        jtxtBarcode.setText("");
 
     }//GEN-LAST:event_jbtnSaveActionPerformed
 
