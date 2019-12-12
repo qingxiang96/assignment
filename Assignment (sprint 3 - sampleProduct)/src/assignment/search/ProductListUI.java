@@ -87,12 +87,12 @@ public class ProductListUI extends javax.swing.JFrame {
     }
     
     public void ProductArray(){
-        product1[0] = new ProductList("SUNSILK", "Shampoo", "Soft and smooth shampoo 650ml", 26.50,140121);
-        product1[1] = new ProductList("PANTENE", "Shampoo", "Shampoo anti Dandruff 340ml", 11.00,140122);
-        product1[2] = new ProductList("ORAL-B", "Complete", "HE", 25,140231);
-        product1[3] = new ProductList("HE", "HE", "HE", 25,111111);
-        product1[4] = new ProductList("HE", "HE", "HE", 25,111112);
-        product1[5] = new ProductList("HE", "HE", "HE", 25,111113);        
+        product1[0] = new ProductList("(A) SUNSILK", "Shampoo", "Soft and smooth shampoo 650ml #adult", 26.50,140121);
+        product1[1] = new ProductList("(AS) PANTENE", "Shampoo", "Shampoo anti Dandruff 340ml #adult#sensitiveskin", 11.00,140122);
+        product1[2] = new ProductList("(C) ORAL-B", "Complete", "HE #child", 25,140231);
+        product1[3] = new ProductList("(S) HE", "HE", "HE #sensitiveskin", 25,111111);
+        product1[4] = new ProductList("(CS) HE", "HE", "HE #child#sensitiveskin", 25,111112);
+        product1[5] = new ProductList("(AC) HE", "HE", "HE #adult#child", 25,111113);        
     }
      
     /**
@@ -118,11 +118,13 @@ public class ProductListUI extends javax.swing.JFrame {
         jcmbAttribute = new javax.swing.JComboBox();
         jbtnSearch = new javax.swing.JButton();
         jcmbSelection = new javax.swing.JComboBox();
-        jPanelPrice = new javax.swing.JPanel();
-        jRadBtn10 = new javax.swing.JRadioButton();
-        jRadBtn15 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jPanelAttri = new javax.swing.JPanel();
+        jChkBoxAdult = new javax.swing.JCheckBox();
+        jChkBoxChild = new javax.swing.JCheckBox();
+        jChkBoxSens = new javax.swing.JCheckBox();
+        jLabelPriceRange = new javax.swing.JLabel();
         jTxtPriceMin = new javax.swing.JTextField();
+        jLabelPriceRangeTo = new javax.swing.JLabel();
         jTxtPriceMax = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -192,53 +194,76 @@ public class ProductListUI extends javax.swing.JFrame {
             }
         });
 
-        jPanelPrice.setBorder(javax.swing.BorderFactory.createTitledBorder("Price Range: "));
-        jPanelPrice.setToolTipText("");
-        jPanelPrice.setName(""); // NOI18N
+        jPanelAttri.setBorder(javax.swing.BorderFactory.createTitledBorder("Attributes: "));
+        jPanelAttri.setToolTipText("");
+        jPanelAttri.setName(""); // NOI18N
 
-        jRadBtn10.setText("MYR1 - MYR10");
+        jChkBoxAdult.setSelected(true);
+        jChkBoxAdult.setText("Adult");
 
-        jRadBtn15.setText("jRadioButton1");
+        jChkBoxChild.setSelected(true);
+        jChkBoxChild.setText("Child");
 
-        jRadioButton2.setText("jRadioButton2");
+        jChkBoxSens.setText("Sensitive Skin");
 
-        javax.swing.GroupLayout jPanelPriceLayout = new javax.swing.GroupLayout(jPanelPrice);
-        jPanelPrice.setLayout(jPanelPriceLayout);
-        jPanelPriceLayout.setHorizontalGroup(
-            jPanelPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPriceLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadBtn10)
-                    .addComponent(jRadBtn15)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
-        jPanelPriceLayout.setVerticalGroup(
-            jPanelPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPriceLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadBtn10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadBtn15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
-                .addContainerGap(85, Short.MAX_VALUE))
-        );
+        jLabelPriceRange.setText("Price Range: ");
 
-        jTxtPriceMin.setToolTipText("Enter Price Range");
+        jTxtPriceMin.setText("0");
+        jTxtPriceMin.setToolTipText("Enter your minimum price range");
         jTxtPriceMin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTxtPriceMinKeyTyped(evt);
             }
         });
 
-        jTxtPriceMax.setToolTipText("Enter Price Range");
+        jLabelPriceRangeTo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPriceRangeTo.setText("to");
+
+        jTxtPriceMax.setText("99999");
+        jTxtPriceMax.setToolTipText("Enter your maximum price range");
         jTxtPriceMax.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTxtPriceMaxKeyTyped(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanelAttriLayout = new javax.swing.GroupLayout(jPanelAttri);
+        jPanelAttri.setLayout(jPanelAttriLayout);
+        jPanelAttriLayout.setHorizontalGroup(
+            jPanelAttriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAttriLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAttriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAttriLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jTxtPriceMin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelPriceRangeTo, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtPriceMax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelPriceRange)
+                    .addComponent(jChkBoxAdult)
+                    .addComponent(jChkBoxChild)
+                    .addComponent(jChkBoxSens))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanelAttriLayout.setVerticalGroup(
+            jPanelAttriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAttriLayout.createSequentialGroup()
+                .addComponent(jChkBoxAdult)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jChkBoxChild)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jChkBoxSens)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelPriceRange)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAttriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtPriceMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtPriceMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPriceRangeTo))
+                .addGap(0, 17, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,30 +278,24 @@ public class ProductListUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblBarcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
+                        .addComponent(jtxtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jcmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcmbSelection, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtnSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbtnAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbtnDelete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbtnUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbtnGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcmbBrand, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcmbAttribute, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcmbAttribute, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addComponent(jPanelAttri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxtPriceMax, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTxtPriceMin, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())))
+                                    .addComponent(jcmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcmbSelection, 0, 94, Short.MAX_VALUE)
+                                    .addComponent(jbtnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcmbBrand, 0, 0, Short.MAX_VALUE))))))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,31 +311,24 @@ public class ProductListUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTxtPriceMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtPriceMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jcmbSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jcmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcmbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jcmbAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtxtBarcode)
-                                    .addComponent(jlblBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jcmbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanelAttri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addComponent(jcmbAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlblBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtBarcode)))
                     .addComponent(jScrollPane1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -324,15 +336,13 @@ public class ProductListUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
         public void custBtnDisable(){
         jbtnAdd.setVisible(false);
         jbtnDelete.setVisible(false);
         jbtnUpdate.setVisible(false);
         jbtnGenerate.setVisible(false);
         searchBtnDisable();
-    }
-    
+    }            
         public void searchBtnDisable(){
             jcmbSelection.setVisible(false);
             jcmbCategory.setVisible(false);
@@ -341,7 +351,7 @@ public class ProductListUI extends javax.swing.JFrame {
             jlblBarcode.setVisible(false);
             jtxtBarcode.setVisible(false);
         }
-    
+        
     private void jbtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddActionPerformed
         // TODO add your handling code here:
         //UserInterface.setVisible(true);
@@ -398,21 +408,51 @@ public class ProductListUI extends javax.swing.JFrame {
                 searchBtnDisable();
         jcmbSelection.setVisible(true);
         
-        //vvvvvvvvvv  priceRange filter  vvvvvvvvvv
+        //vvvvvvvvvv  priceRange + Attribute filter  vvvvvvvvvv
+        if(jTxtPriceMin.getText().isEmpty()){jTxtPriceMin.setText("0");}
+        if(jTxtPriceMax.getText().isEmpty()){jTxtPriceMax.setText("0");}
         int priceMin = Integer.parseInt(jTxtPriceMin.getText());
         int priceMax = Integer.parseInt(jTxtPriceMax.getText());
         if(priceMax < priceMin){
             JOptionPane.showMessageDialog(null, "Max price must be higher than min price! ", "Error", 2);
             jTxtPriceMax.setText("");jTxtPriceMax.grabFocus();
         }else if(priceMin < priceMax){
-            listModel.clear();//clear List
+            listModel.clear();//clear List first
             for(int k=0;k<size;k++){
                 if(product1[k].getPrice() <= priceMax && product1[k].getPrice() >= priceMin){
-                    addProduct(product1[k].getName());
+                    //vvvvv   Only adult+child picked (default)   vvvvv
+                    if(jChkBoxAdult.isSelected() && jChkBoxChild.isSelected() && !jChkBoxSens.isSelected()){
+                        addProduct(product1[k].getName());
+                    }//vvvvv   When all picked   vvvvv
+                    else if(jChkBoxAdult.isSelected() && jChkBoxChild.isSelected() 
+                    && jChkBoxSens.isSelected() && product1[k].getDescription().contains("#sensitiveskin")){
+                        addProduct(product1[k].getName());
+                    }//vvvvv   Only adult picked   vvvvv
+                    else if(jChkBoxAdult.isSelected() && !jChkBoxChild.isSelected() && !jChkBoxSens.isSelected()
+                    && product1[k].getDescription().contains("#adult")){
+                        addProduct(product1[k].getName());
+                    }//vvvvv   Only child picked   vvvvv
+                    else if(!jChkBoxAdult.isSelected() && jChkBoxChild.isSelected() && !jChkBoxSens.isSelected()
+                    && product1[k].getDescription().contains("#child")){
+                        addProduct(product1[k].getName());
+                    }//vvvvv   Only sensitiveSkin picked   vvvvv
+                    else if(!jChkBoxAdult.isSelected() && !jChkBoxChild.isSelected() && jChkBoxSens.isSelected()
+                    && product1[k].getDescription().contains("#sensitiveskin")){
+                        addProduct(product1[k].getName());
+                    }//vvvvv   Only adult+sensitiveSkin picked   vvvvv
+                    else if(jChkBoxAdult.isSelected() && !jChkBoxChild.isSelected() && jChkBoxSens.isSelected()
+                    && product1[k].getDescription().contains("#adult") 
+                    && product1[k].getDescription().contains("#sensitiveskin")){
+                        addProduct(product1[k].getName());
+                    }//vvvvv   Only child+sensitiveSkin picked   vvvvv
+                    else if(!jChkBoxAdult.isSelected() && jChkBoxChild.isSelected() && jChkBoxSens.isSelected()
+                    && product1[k].getDescription().contains("#child") 
+                    && product1[k].getDescription().contains("#sensitiveskin")){
+                        addProduct(product1[k].getName());
+                    }else{}//none Picked
                 }
             }
-        }
-        //^^^^^^^^^^  priceRange filter  ^^^^^^^^^^
+        }//^^^^^^^^^^  priceRange + Attribute filter  ^^^^^^^^^^
     }//GEN-LAST:event_jbtnSearchActionPerformed
 
     private void jcmbSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSelectionActionPerformed
@@ -450,28 +490,29 @@ public class ProductListUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jcmbCategoryActionPerformed
 
+//vvvvvvvvvv   priceRange Force Number input(Min Price)   vvvvvvvvvv
     private void jTxtPriceMinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtPriceMinKeyTyped
-        //vvvvvvvvvv   priceRange Force Number input(Min Price)   vvvvvvvvvv
         char price = evt.getKeyChar();
         if(!(Character.isDigit(price))
             ||(price == KeyEvent.VK_BACK_SPACE)
             ||(price == KeyEvent.VK_DELETE)){
             getToolkit().beep();
             evt.consume();
-        }//^^^^^^^^^^   priceRange Force Number input(Min Price)   ^^^^^^^^^^
+        }
     }//GEN-LAST:event_jTxtPriceMinKeyTyped
+//^^^^^^^^^^   priceRange Force Number input(Min Price)   ^^^^^^^^^^
 
+//vvvvvvvvvv   priceRange Force Number input(Max Price)   vvvvvvvvvv
     private void jTxtPriceMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtPriceMaxKeyTyped
-        //vvvvvvvvvv   priceRange Force Number input(Max Price)   vvvvvvvvvv
         char price = evt.getKeyChar();
         if(!(Character.isDigit(price))
             ||(price == KeyEvent.VK_BACK_SPACE)
             ||(price == KeyEvent.VK_DELETE)){
             getToolkit().beep();
             evt.consume();
-        }//^^^^^^^^^^   priceRange Force Number input(Max Price)   ^^^^^^^^^^
+        }
     }//GEN-LAST:event_jTxtPriceMaxKeyTyped
-
+//^^^^^^^^^^   priceRange Force Number input(Max Price)   ^^^^^^^^^^
     /**
      * @param args the command line arguments
      */
@@ -515,11 +556,13 @@ public class ProductListUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jChkBoxAdult;
+    private javax.swing.JCheckBox jChkBoxChild;
+    private javax.swing.JCheckBox jChkBoxSens;
+    private javax.swing.JLabel jLabelPriceRange;
+    private javax.swing.JLabel jLabelPriceRangeTo;
     public javax.swing.JList jListProduct;
-    private javax.swing.JPanel jPanelPrice;
-    private javax.swing.JRadioButton jRadBtn10;
-    private javax.swing.JRadioButton jRadBtn15;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JPanel jPanelAttri;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTxtPriceMax;
     private javax.swing.JTextField jTxtPriceMin;
