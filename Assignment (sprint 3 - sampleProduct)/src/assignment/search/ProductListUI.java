@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
  */
 public class ProductListUI extends javax.swing.JFrame {
     public ProductADT[] product1 = new ProductList[20];
-    int size = 6;
+    static int size = 6;
     
     DefaultListModel listModel = new DefaultListModel();
     
@@ -292,7 +292,10 @@ public class ProductListUI extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_jbtnAddActionPerformed
-
+    
+    
+    
+    
     private void jbtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeleteActionPerformed
         // TODO add your handling code here:
        // jListDisplayName.remove;
@@ -373,7 +376,9 @@ public class ProductListUI extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jcmbCategoryActionPerformed
-
+    
+    
+    
     /**
      * @param args the command line arguments
      */
