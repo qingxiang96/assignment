@@ -5,6 +5,7 @@
  */
 package assignment.search;
 
+import java.awt.event.KeyEvent;
 import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -32,42 +33,31 @@ public class ProductListUI extends javax.swing.JFrame {
     //ProductList productL;
     
     public ProductListUI() {
-       initComponents();
-        
-       //AddProductUI p = new AddProductUI();
-       
+       initComponents();        
+       //AddProductUI p = new AddProductUI();       
        //jLabel1.setText(p.product1.getName());
        //String searchType = "name";
         //  String searchContent = "";
-       
-      
-           addList();
-
+        addList();
     }
     
-
-
     public ProductListUI(String name, String category, String description, double price, int barcode) {
-         initComponents();
+        initComponents();
         
         product1[0] = new ProductList(name, category, description, price, barcode);
         addProduct(product1[0].getName());
     }
 
-    private void addList(){
-        
+    private void addList(){        
         //jListProduct.clearSelection();
-         ProductArray();
-       for(int i = 0 ; i < size ; i ++){
-           
-           if(searchType.equals("name")){
-               
-               if(searchContent.equals("")||searchContent.equals(product1[i].getName())){
-                  addProduct(product1[i].getName());
-               }
-               
-           }
-    }
+        ProductArray();
+        for(int i = 0 ; i < size ; i ++){
+            if(searchType.equals("name")){
+                if(searchContent.equals("")||searchContent.equals(product1[i].getName())){
+                    addProduct(product1[i].getName());
+                }
+            }
+        }
     }
     
     private void addProduct(String name){
@@ -77,9 +67,7 @@ public class ProductListUI extends javax.swing.JFrame {
         //  String searchContent = "";
         
         String output = name;
-
-
-       listModel.addElement(output);
+        listModel.addElement(output);
     }
     
      public ProductListUI(boolean status) {
@@ -130,6 +118,12 @@ public class ProductListUI extends javax.swing.JFrame {
         jcmbAttribute = new javax.swing.JComboBox();
         jbtnSearch = new javax.swing.JButton();
         jcmbSelection = new javax.swing.JComboBox();
+        jPanelPrice = new javax.swing.JPanel();
+        jRadBtn10 = new javax.swing.JRadioButton();
+        jRadBtn15 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jTxtPriceMin = new javax.swing.JTextField();
+        jTxtPriceMax = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,6 +192,54 @@ public class ProductListUI extends javax.swing.JFrame {
             }
         });
 
+        jPanelPrice.setBorder(javax.swing.BorderFactory.createTitledBorder("Price Range: "));
+        jPanelPrice.setToolTipText("");
+        jPanelPrice.setName(""); // NOI18N
+
+        jRadBtn10.setText("MYR1 - MYR10");
+
+        jRadBtn15.setText("jRadioButton1");
+
+        jRadioButton2.setText("jRadioButton2");
+
+        javax.swing.GroupLayout jPanelPriceLayout = new javax.swing.GroupLayout(jPanelPrice);
+        jPanelPrice.setLayout(jPanelPriceLayout);
+        jPanelPriceLayout.setHorizontalGroup(
+            jPanelPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPriceLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadBtn10)
+                    .addComponent(jRadBtn15)
+                    .addComponent(jRadioButton2))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        jPanelPriceLayout.setVerticalGroup(
+            jPanelPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPriceLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadBtn10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadBtn15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton2)
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+
+        jTxtPriceMin.setToolTipText("Enter Price Range");
+        jTxtPriceMin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtPriceMinKeyTyped(evt);
+            }
+        });
+
+        jTxtPriceMax.setToolTipText("Enter Price Range");
+        jTxtPriceMax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtPriceMaxKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,12 +249,13 @@ public class ProductListUI extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblBarcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jtxtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jcmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -224,8 +267,16 @@ public class ProductListUI extends javax.swing.JFrame {
                             .addComponent(jbtnGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcmbBrand, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcmbAttribute, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)))
-                .addGap(35, 35, 35))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTxtPriceMax, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtPriceMin, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,21 +292,31 @@ public class ProductListUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbtnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jTxtPriceMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtPriceMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcmbSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcmbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jcmbAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtxtBarcode)
-                            .addComponent(jlblBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jcmbSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcmbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jcmbAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtxtBarcode)
+                                    .addComponent(jlblBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -336,7 +397,22 @@ public class ProductListUI extends javax.swing.JFrame {
         // TODO add your handling code here:
                 searchBtnDisable();
         jcmbSelection.setVisible(true);
-
+        
+        //vvvvvvvvvv  priceRange filter  vvvvvvvvvv
+        int priceMin = Integer.parseInt(jTxtPriceMin.getText());
+        int priceMax = Integer.parseInt(jTxtPriceMax.getText());
+        if(priceMax < priceMin){
+            JOptionPane.showMessageDialog(null, "Max price must be higher than min price! ", "Error", 2);
+            jTxtPriceMax.setText("");jTxtPriceMax.grabFocus();
+        }else if(priceMin < priceMax){
+            listModel.clear();//clear List
+            for(int k=0;k<size;k++){
+                if(product1[k].getPrice() <= priceMax && product1[k].getPrice() >= priceMin){
+                    addProduct(product1[k].getName());
+                }
+            }
+        }
+        //^^^^^^^^^^  priceRange filter  ^^^^^^^^^^
     }//GEN-LAST:event_jbtnSearchActionPerformed
 
     private void jcmbSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSelectionActionPerformed
@@ -373,6 +449,28 @@ public class ProductListUI extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jcmbCategoryActionPerformed
+
+    private void jTxtPriceMinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtPriceMinKeyTyped
+        //vvvvvvvvvv   priceRange Force Number input(Min Price)   vvvvvvvvvv
+        char price = evt.getKeyChar();
+        if(!(Character.isDigit(price))
+            ||(price == KeyEvent.VK_BACK_SPACE)
+            ||(price == KeyEvent.VK_DELETE)){
+            getToolkit().beep();
+            evt.consume();
+        }//^^^^^^^^^^   priceRange Force Number input(Min Price)   ^^^^^^^^^^
+    }//GEN-LAST:event_jTxtPriceMinKeyTyped
+
+    private void jTxtPriceMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtPriceMaxKeyTyped
+        //vvvvvvvvvv   priceRange Force Number input(Max Price)   vvvvvvvvvv
+        char price = evt.getKeyChar();
+        if(!(Character.isDigit(price))
+            ||(price == KeyEvent.VK_BACK_SPACE)
+            ||(price == KeyEvent.VK_DELETE)){
+            getToolkit().beep();
+            evt.consume();
+        }//^^^^^^^^^^   priceRange Force Number input(Max Price)   ^^^^^^^^^^
+    }//GEN-LAST:event_jTxtPriceMaxKeyTyped
 
     /**
      * @param args the command line arguments
@@ -418,7 +516,13 @@ public class ProductListUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JList jListProduct;
+    private javax.swing.JPanel jPanelPrice;
+    private javax.swing.JRadioButton jRadBtn10;
+    private javax.swing.JRadioButton jRadBtn15;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTxtPriceMax;
+    private javax.swing.JTextField jTxtPriceMin;
     private javax.swing.JButton jbtnAdd;
     private javax.swing.JButton jbtnDelete;
     private javax.swing.JButton jbtnGenerate;
