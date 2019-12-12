@@ -416,7 +416,7 @@ public class ProductListUI extends javax.swing.JFrame {
         if(priceMax < priceMin){
             JOptionPane.showMessageDialog(null, "Max price must be higher than min price! ", "Error", 2);
             jTxtPriceMax.setText("");jTxtPriceMax.grabFocus();
-        }else if(priceMin < priceMax){
+        }else if(priceMin <= priceMax){
             listModel.clear();//clear List first
             for(int k=0;k<size;k++){
                 if(product1[k].getPrice() <= priceMax && product1[k].getPrice() >= priceMin){
